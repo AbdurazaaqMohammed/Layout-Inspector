@@ -7,37 +7,10 @@
 [![Android](https://img.shields.io/badge/Platform-Android%207%2B-green.svg)](https://www.android.com/)
 [![GitHub release](https://img.shields.io/github/v/release/codehasan/Current-Activity?include_prereleases)](https://github.com/codehasan/Current-Activity/releases/latest)
 
-Instantly displays the *package name* and *class name* of the application currently in the
-foreground.  
-Quickly inspect any active app on your device for development or debugging.
+Instantly displays the *package name* and *class name* of the application currently in the foreground.  
+* This version now with layout inspector
 
-[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt='Get it on Google Play' height="80">](https://play.google.com/store/apps/details?id=io.github.ratul.topactivity)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" height="80" alt="Get it at IzzyOnDroid">](https://apt.izzysoft.de/packages/io.github.ratul.topactivity)
-[<img src="./.resources/get-it-on-github.png" alt='Get it on GitHub' height="80">](https://github.com/codehasan/Current-Activity/releases/latest)
-<!--  [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt='Get it on F-Droid' height="80">](https://f-droid.org/packages/io.github.ratul.topactivity) -->
 
-</div>
-
-## ⚠️ Important Note
-
-> **Note:** Google prohibits the usage of **QUERY_ALL_PACKAGES** permission and **AccessibilityService** without a strong explanation. For that reason, the Play Store version of **Current Activity** won't have either of these features. While the app will still function, performance will vary.
->
-> **💡 Recommendation:** It is strongly recommended to use the latest **Global** version from [**Releases**](https://github.com/codehasan/Current-Activity/releases/latest) rather than from **Play Store**.
-
-## ✨ Key Features
-
-- **📱 Real-Time Tracking:** View the **package name** and the **class name** of the app currently
-  visible to the user (i.e., the top app).
-- **🛠️ Development & Debugging:** Quickly verify which components are launched, aid in deep-link
-  development, and confirm third-party app interaction.
-- **🔧 Reverse Engineering:** Identify key components and packages in external applications for
-  analysis.
-
-## 📋 How to copy text
-
-<div align="center">
-  <img src="./.resources/images/how_to_copy_1.jpg" width="160" height="356" alt="Screenshot 1">
-  <img src="./.resources/images/how_to_copy_2.jpg" width="160" height="356" alt="Screenshot 2">
 </div>
 
 ## 📸 Screenshots
