@@ -29,6 +29,7 @@ import io.github.ratul.topactivity.R
 import io.github.ratul.topactivity.extensions.getScreenSize
 import io.github.ratul.topactivity.extensions.value
 import io.github.ratul.topactivity.repository.DataRepository
+import io.github.ratul.topactivity.services.AccessibilityMonitoringService
 import io.github.ratul.topactivity.utils.DatabaseUtil
 import io.github.ratul.topactivity.utils.WindowManagerUtil.getLayoutParams
 import kotlinx.coroutines.CoroutineScope
@@ -42,16 +43,17 @@ import kotlinx.coroutines.withContext
 class PopupManager(private val context: Context) {
 
     private val popupScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private val inspectOverlayManager = InspectOverlayManager(context)
 
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private var baseView: View? = null
     private var historyManager: HistoryManager? = null
+    private var inspectBtn: ImageView? = null
 
     fun show() {
         if (baseView != null) return
 
-        val view = LayoutInflater.from(context)
-            .inflate(R.layout.layout_activity_info, null)
+        val view = LayoutInflater.from(context).inflate(R.layout.layout_activity_info, null)
         baseView = view
 
         val (displayWidth, _) = windowManager.getScreenSize()
@@ -69,6 +71,7 @@ class PopupManager(private val context: Context) {
         val className = view.findViewById<TextView>(R.id.class_name)
         val closeBtn = view.findViewById<ImageView>(R.id.closeBtn)
         val historyBtn = view.findViewById<ImageView>(R.id.historyBtn)
+        inspectBtn = view.findViewById(R.id.inspectBtn)
 
         val copyListener = View.OnLongClickListener { v ->
             val textView = v as TextView
@@ -86,6 +89,17 @@ class PopupManager(private val context: Context) {
             if (historyManager?.isActive() == true) return@setOnClickListener
             historyManager = HistoryManager(context)
             historyManager?.show()
+        }
+
+        inspectBtn?.setOnClickListener {
+            val accessibilityService = AccessibilityMonitoringService.instance
+            if (accessibilityService == null) {
+                App.showToast(context, context.getString(R.string.use_accessibility_service_desc))
+                return@setOnClickListener
+            }
+
+            baseView?.post(inspectOverlayManager::show)
+            App.showToast(context, "Tap any view to inspect")
         }
         packageName.setOnLongClickListener(copyListener)
         className.setOnLongClickListener(copyListener)
@@ -124,6 +138,7 @@ class PopupManager(private val context: Context) {
     }
 
     private fun hide() {
+        inspectOverlayManager.hide()
         baseView?.let {
             windowManager.removeView(it)
             baseView = null

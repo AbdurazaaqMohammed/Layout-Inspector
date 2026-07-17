@@ -33,7 +33,9 @@ import io.github.ratul.topactivity.R
 import io.github.ratul.topactivity.services.AccessibilityMonitoringService
 import io.github.ratul.topactivity.utils.DatabaseUtil
 
-fun AppCompatActivity.isSystemOverlayGranted() = Settings.canDrawOverlays(this)
+fun AppCompatActivity.isSystemOverlayGranted() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    Settings.canDrawOverlays(this)
+} else true
 
 fun AppCompatActivity.isNotificationGranted() =
     Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
@@ -41,11 +43,15 @@ fun AppCompatActivity.isNotificationGranted() =
 
 fun AppCompatActivity.isUsageStatsGranted(): Boolean {
     val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-    val mode = appOps.checkOpNoThrow(
-        AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), packageName
-    )
+    val mode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), packageName)
+    } else {
+        3
+    }
     return if (mode == AppOpsManager.MODE_DEFAULT) {
-        checkCallingOrSelfPermission(PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkCallingOrSelfPermission(PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED
+        } else true
     } else {
         mode == AppOpsManager.MODE_ALLOWED
     }

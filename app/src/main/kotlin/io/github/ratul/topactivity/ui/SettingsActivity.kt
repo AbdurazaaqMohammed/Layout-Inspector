@@ -91,7 +91,7 @@ class SettingsActivity : AppCompatActivity() {
         setupToolbar()
         setupFab()
         setupPreferences()
-        setupAutoUpdate()
+        //setupAutoUpdate()
 
         if (handleQsTileIntent(intent)) moveTaskToBack(true)
     }

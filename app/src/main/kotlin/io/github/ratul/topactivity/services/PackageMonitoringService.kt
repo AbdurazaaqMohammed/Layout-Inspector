@@ -21,6 +21,7 @@ import android.app.usage.UsageEvents
 import android.app.usage.UsageStatsManager
 import android.content.Intent
 import android.os.Binder
+import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
@@ -61,7 +62,9 @@ class PackageMonitoringService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        usageStats = getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            usageStats = getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -81,24 +84,27 @@ class PackageMonitoringService : Service() {
     }
 
     private fun getForegroundApp(): Pair<String?, String?> {
-        val currentTime = System.currentTimeMillis()
-        val usageEvents = usageStats.queryEvents(currentTime - 5000, currentTime)
-        var latestPackage: String? = null
-        var latestClass: String? = null
-        var latestTimestamp = 0L
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val currentTime = System.currentTimeMillis()
+            val usageEvents = usageStats.queryEvents(currentTime - 5000, currentTime)
+            var latestPackage: String? = null
+            var latestClass: String? = null
+            var latestTimestamp = 0L
 
-        val event = UsageEvents.Event()
-        while (usageEvents.hasNextEvent()) {
-            usageEvents.getNextEvent(event)
-            if (event.eventType == UsageEvents.Event.ACTIVITY_RESUMED &&
-                event.timeStamp > latestTimestamp
-            ) {
-                latestTimestamp = event.timeStamp
-                latestPackage = event.packageName
-                latestClass = event.className
+            val event = UsageEvents.Event()
+            while (usageEvents.hasNextEvent()) {
+                usageEvents.getNextEvent(event)
+                if (event.eventType == UsageEvents.Event.ACTIVITY_RESUMED &&
+                    event.timeStamp > latestTimestamp
+                ) {
+                    latestTimestamp = event.timeStamp
+                    latestPackage = event.packageName
+                    latestClass = event.className
+                }
             }
-        }
 
-        return Pair(latestPackage, latestClass)
+            return Pair(latestPackage, latestClass)
+        }
+      return Pair(null, null)
     }
 }

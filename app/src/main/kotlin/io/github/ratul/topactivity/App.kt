@@ -16,7 +16,6 @@
  */
 package io.github.ratul.topactivity
 
-import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.ClipData
@@ -29,7 +28,7 @@ import androidx.core.app.NotificationManagerCompat
 import io.github.ratul.topactivity.manager.NotificationUiManager
 import io.github.ratul.topactivity.ui.ClipboardActivity
 
-class App : Application() {
+class App : androidx.multidex.MultiDexApplication() {
 
     lateinit var notificationManager: NotificationManagerCompat
         private set
@@ -79,10 +78,6 @@ class App : Application() {
                 context.startActivity(copyActivity)
             }
             showToast(context, msg)
-        }
-
-        fun showToast(context: Context, message: Int) {
-            showToast(context, context.getString(message))
         }
 
         fun showToast(context: Context, message: String) {

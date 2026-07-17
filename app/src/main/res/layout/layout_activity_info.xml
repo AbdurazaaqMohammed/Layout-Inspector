@@ -29,10 +29,20 @@
             android:layout_width="@dimen/popupWindowIconSize"
             android:layout_height="@dimen/popupWindowIconSize"
             android:layout_gravity="center"
+            android:contentDescription="@string/activity_history"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
             android:scaleType="fitXY"
             android:src="@drawable/ic_history" />
+
+        <ImageView
+            android:id="@+id/inspectBtn"
+            android:layout_width="@dimen/popupWindowIconSize"
+            android:layout_height="@dimen/popupWindowIconSize"
+            android:layout_gravity="center"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/inspect_mode"
+            android:scaleType="fitXY"
+            android:src="@drawable/search_24px" />
 
         <ImageView
             android:id="@+id/closeBtn"
@@ -40,7 +50,7 @@
             android:layout_height="@dimen/popupWindowIconSize"
             android:layout_gravity="center"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
+            android:contentDescription="@android:string/cancel"
             android:scaleType="fitXY"
             android:src="@drawable/ic_close" />
     </LinearLayout>
