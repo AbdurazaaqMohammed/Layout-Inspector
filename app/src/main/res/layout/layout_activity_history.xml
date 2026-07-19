@@ -28,7 +28,7 @@
             android:layout_height="@dimen/popupWindowIconSize"
             android:layout_gravity="center"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
+            android:contentDescription="@string/clear"
             android:scaleType="fitXY"
             android:src="@drawable/ic_dustbin" />
 
@@ -38,7 +38,7 @@
             android:layout_height="@dimen/popupWindowIconSize"
             android:layout_gravity="center"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
+            android:contentDescription="@android:string/cancel"
             android:scaleType="fitXY"
             android:src="@drawable/ic_close" />
     </LinearLayout>

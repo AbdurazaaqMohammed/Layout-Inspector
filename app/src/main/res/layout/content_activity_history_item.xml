@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="4dp"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
+            android:contentDescription="@string/copy_pkg"
             android:scaleType="fitXY"
             android:src="@drawable/ic_copy" />
     </LinearLayout>
@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="4dp"
             android:background="?selectableItemBackground"
-            android:importantForAccessibility="no"
+            android:contentDescription="@string/copy_cls"
             android:scaleType="fitXY"
             android:src="@drawable/ic_copy" />
     </LinearLayout>

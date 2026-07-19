@@ -58,6 +58,10 @@
     <string name="view_translation_y">Translation Y</string>
     <string name="view_parent">Parent</string>
     <string name="view_children_count">Children Count</string>
+    <string name="view_children">Children</string>
+    <string name="no_children">No children</string>
+    <string name="tap_view_to_inspect">Tap any view to inspect</string>
+    <string name="inspect_stopped">Inspect mode stopped</string>
     <string name="view_package">Package</string>
     <string name="copy">Copy</string>
     <string name="copied_to_clipboard">Copied %1$s</string>
@@ -82,4 +86,7 @@
     <string name="auto_update_desc_short">Check GitHub for updates on startup</string>
     <string name="use_system_font_desc">Use device default font instead of custom font</string>
     <string name="activity_history">Activity History</string>
+    <string name="clear">Clear history</string>
+    <string name="copy_cls">Copy class name</string>
+    <string name="copy_pkg">Copy package name</string>
 </resources>
