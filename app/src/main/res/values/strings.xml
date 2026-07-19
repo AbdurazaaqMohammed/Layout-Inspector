@@ -32,7 +32,7 @@
     <string name="inspect_mode">Inspect Mode</string>
     <string name="inspect_mode_on">Inspect mode enabled. Tap on any view to inspect it.</string>
     <string name="inspect_mode_off">Inspect mode disabled</string>
-    <string name="view_info">View Info</string>
+    <string name="view_info">⠿ View Info</string>
     <string name="view_id">View ID Name</string>
     <string name="view_id_int">View ID</string>
     <string name="view_id_hex">View ID Hex</string>
@@ -89,4 +89,5 @@
     <string name="clear">Clear history</string>
     <string name="copy_cls">Copy class name</string>
     <string name="copy_pkg">Copy package name</string>
+    <string name="child_el_tx">• %1$s%2$s</string>
 </resources>

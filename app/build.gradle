@@ -1,7 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
     namespace "io.github.ratul.topactivity"
@@ -40,12 +37,6 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-    }
-
     dependenciesInfo {
         // Disables dependency metadata when building APKs (for IzzyOnDroid/F-Droid)
         includeInApk = false
@@ -75,14 +66,8 @@ android {
 
 dependencies {
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation 'com.android.volley:volley:1.2.1'
     implementation("androidx.multidex:multidex:2.0.1")
     implementation 'androidx.startup:startup-runtime:1.1.0'
-}
-
-configurations.all {
-    resolutionStrategy {
-        force('org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.0')
-    }
 }
